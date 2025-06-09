@@ -2,19 +2,43 @@
 import clsx from "clsx/lite";
 
 type Props = {
-    href: string
-    className?: string
-    variant?: "primary" | "secondary"
-}
+  href: string;
+  className?: string;
+  variant?: "primary" | "secondary";
+  arrow?: boolean;
+};
 
-const { href, variant = "primary", className } = Astro.props;
+const { href, variant = "primary", className, arrow = false } = Astro.props;
 ---
 
-<a href={href} class={clsx(
-    "w-fit text-base sm:text-2xl px-5 py-2 rounded-full transition-all duration-300 ease-in-out whitespace-nowrap",
-    variant === "primary" && "text-zinc-900 bg-zinc-100 hover:outline-2 outline-offset-2 outline-zinc-100",
-    variant === "secondary" && "text-zinc-100 hover:text-white bg-transparent hover:bg-zinc-100/20 hover:outline-2 outline-offset-2 outline-zinc-100/20",
+<a
+  href={href}
+  class={clsx(
+    "w-fit text-base sm:text-2xl px-5 py-2 rounded-full transition-all duration-300 ease-in-out whitespace-nowrap inline-flex items-center gap-2",
+    variant === "primary" &&
+      "text-zinc-900 bg-zinc-100 hover:outline-2 outline-offset-2 outline-zinc-100",
+    variant === "secondary" &&
+      "text-zinc-100 hover:text-white bg-transparent hover:bg-zinc-100/20 hover:outline-2 outline-offset-2 outline-zinc-100/20",
     className
-)}>
-    <slot />
+  )}
+>
+  {
+    arrow && (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        class="transition-transform duration-300 ease-in-out group-hover:translate-x-1"
+      >
+        <title>Arrow Icon</title>
+        <path
+          fill="currentColor"
+          d="M13.53 8.47a.75.75 0 1 0-1.06 1.06l1.72 1.72H8a.75.75 0 0 0 0 1.5h6.19l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3a.75.75 0 0 0 0-1.06z"
+        />
+      </svg>
+    )
+  }
+  <slot />
 </a>
