@@ -29,24 +29,50 @@ import RootLayout from "../layouts/RootLayout.astro";
       <div
         class="p-4 sm:p-8 absolute w-full h-dvh flex flex-col justify-between z-10"
       >
+        <!-- Mobile: Top navigation -->
+        <div class="sm:hidden w-full flex justify-between items-center">
+          <AvailableForWork />
+          <Navigation client:load>
+            <Link href="/works" variant="secondary">Works</Link>
+            <Link href="/about" variant="secondary">About</Link>
+            <Link href="/contact" variant="secondary">Contact me</Link>
+          </Navigation>
+        </div>
+
+        <!-- Main content -->
         <div
-          class="w-full flex justify-center items-center h-full flex-col gap-4"
+          class="w-full flex justify-center sm:items-center h-full flex-col gap-4"
         >
-          <H1 className="text-center"> Hey, I'm Daniel Benet </H1>
-          <H2 className="text-center"
+          <H1 className="text-left sm:text-center">Hey, I'm Daniel Benet</H1>
+          <H2 className="text-left sm:text-center"
             >I help build fast, clean frontends — mainly in Shopify and React
             Native.</H2
           >
 
-          <div class="flex gap-4 py-4">
-            <Link href="/projects" variant="secondary" arrow>
-              View recent work
-            </Link>
-            <Link href="/about" variant="secondary" arrow> More about me </Link>
+          <div class="flex flex-col sm:flex-row gap-4 py-4 w-full sm:w-auto">
+            <div class="hidden">
+              <Link href="/projects" variant="secondary" arrow>
+                View recent work
+              </Link>
+              <Link href="/about" variant="secondary" arrow>
+                More about me
+              </Link>
+            </div>
+            <div class="sm:hidden">
+              <Link href="/projects" variant="primary"> View recent work </Link>
+              <Link href="/about" variant="secondary"> More about me </Link>
+            </div>
           </div>
         </div>
+
+        <!-- Mobile: Bottom CTA -->
+        <div class="sm:hidden w-full flex justify-center">
+          <Link href="#">Contact me</Link>
+        </div>
       </div>
-      <div class="absolute top-0 right-0 sm:p-8 z-50">
+
+      <!-- Desktop: Top-right navigation -->
+      <div class="hidden sm:block absolute top-0 right-0 sm:p-8 z-50">
         <div class="flex flex-col items-end">
           <div class="flex gap-8">
             <Navigation client:load>
@@ -55,7 +81,7 @@ import RootLayout from "../layouts/RootLayout.astro";
               <Link href="/contact" variant="secondary">Contact me</Link>
             </Navigation>
             <AvailableForWork />
-            <Link href="#">Book a call</Link>
+            <Link href="#">Contact me</Link>
           </div>
         </div>
       </div>
