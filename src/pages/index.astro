@@ -9,82 +9,75 @@ import RootLayout from "../layouts/RootLayout.astro";
 ---
 
 <RootLayout>
-  <main>
-    <div
-      class="group relative w-full min-h-dvh flex items-center justify-center"
-    >
-      <div class="absolute w-full h-dvh -z-10">
-        <WarpBackground
-          color1="#09090b"
-          color2="#27272a"
-          color3="#52525b"
-          speed={0.6}
-          swirl={0.5}
-          swirlIterations={10}
-          shapeScale={0.3}
-          client:load
-        />
-      </div>
-
-      <div
-        class="p-4 sm:p-8 absolute w-full h-dvh flex flex-col justify-between z-10"
-      >
-        <!-- Mobile: Top navigation -->
-        <div class="sm:hidden w-full flex justify-between items-center">
-          <AvailableForWork />
-          <Navigation client:load>
-            <Link href="/works" variant="secondary">Works</Link>
-            <Link href="/about" variant="secondary">About</Link>
-            <Link href="/contact" variant="secondary">Contact me</Link>
-          </Navigation>
-        </div>
-
-        <!-- Main content -->
-        <div
-          class="w-full flex justify-center sm:items-center h-full flex-col gap-4"
-        >
-          <H1 className="text-left sm:text-center">Hey, I'm Daniel Benet</H1>
-          <H2 className="text-left sm:text-center"
-            >I help build fast, clean frontends — mainly in Shopify and React
-            Native.</H2
-          >
-
-          <div class="flex flex-col sm:flex-row gap-4 py-4 w-full sm:w-auto">
-            <div class="hidden">
-              <Link href="/projects" variant="secondary" arrow>
-                View recent work
-              </Link>
-              <Link href="/about" variant="secondary" arrow>
-                More about me
-              </Link>
-            </div>
-            <div class="sm:hidden">
-              <Link href="/projects" variant="primary"> View recent work </Link>
-              <Link href="/about" variant="secondary"> More about me </Link>
-            </div>
-          </div>
-        </div>
-
-        <!-- Mobile: Bottom CTA -->
-        <div class="sm:hidden w-full flex justify-center">
-          <Link href="#">Contact me</Link>
-        </div>
-      </div>
-
-      <!-- Desktop: Top-right navigation -->
-      <div class="hidden sm:block absolute top-0 right-0 sm:p-8 z-50">
-        <div class="flex flex-col items-end">
-          <div class="flex gap-8">
-            <Navigation client:load>
-              <Link href="/works" variant="secondary">Works</Link>
-              <Link href="/about" variant="secondary">About</Link>
-              <Link href="/contact" variant="secondary">Contact me</Link>
-            </Navigation>
-            <AvailableForWork />
-            <Link href="#">Contact me</Link>
-          </div>
-        </div>
-      </div>
+  <main
+    class="relative w-full min-h-dvh grid grid-rows-[auto_1fr_auto] sm:grid-rows-1 sm:place-items-center p-4 sm:p-8"
+  >
+    <!-- Background -->
+    <div class="absolute inset-0 -z-10">
+      <WarpBackground
+        color1="#09090b"
+        color2="#27272a"
+        color3="#52525b"
+        speed={0.6}
+        swirl={0.5}
+        swirlIterations={10}
+        shapeScale={0.3}
+        client:load
+      />
     </div>
+
+    <!-- Mobile: Top navigation -->
+    <header class="sm:hidden flex justify-between items-center">
+      <AvailableForWork />
+      <Navigation client:load>
+        <Link href="/works" variant="secondary">Works</Link>
+        <Link href="/about" variant="secondary">About</Link>
+        <Link href="/contact" variant="secondary">Contact me</Link>
+      </Navigation>
+    </header>
+
+    <!-- Main content -->
+    <section
+      class="flex flex-col gap-4 text-left sm:text-center sm:items-center justify-center"
+    >
+      <H1>Hey, I'm Daniel Benet</H1>
+      <H2
+        >I help build fast, clean frontends — mainly in Shopify and React
+        Native.</H2
+      >
+
+      <div class="flex flex-col sm:flex-row gap-4 pt-4">
+        <div class="block sm:hidden">
+          <Link href="/projects" variant="primary">View recent work</Link>
+        </div>
+        <div class="hidden sm:block">
+          <Link href="/projects" variant="secondary" arrow
+            >View recent work</Link
+          >
+        </div>
+        <div class="block sm:hidden">
+          <Link href="/about" variant="secondary">More about me</Link>
+        </div>
+        <div class="hidden sm:block">
+          <Link href="/about" variant="secondary" arrow>More about me</Link>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mobile: Bottom CTA -->
+    <footer class="sm:hidden flex justify-center">
+      <Link href="/contact">Contact me</Link>
+    </footer>
+
+    <!-- Desktop: Top-right navigation -->
+    <nav class="hidden sm:flex absolute top-8 right-8 gap-8 items-center">
+      <Navigation client:load>
+        <Link href="/works" variant="secondary">Works</Link>
+        <Link href="/about" variant="secondary">About</Link>
+        <Link href="/contact" variant="secondary">Contact me</Link>
+      </Navigation>
+      <AvailableForWork />
+      <Link href="/contact">Contact me</Link>
+    </nav>
   </main>
 </RootLayout>
