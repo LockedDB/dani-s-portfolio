@@ -1,0 +1,56 @@
+---
+import { Image } from "astro:assets";
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import H1 from "../../components/h1.astro";
+import InfoLayout from "../../layouts/InfoLayout.astro";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+type Props = {
+  project: CollectionEntry<"projects">;
+};
+
+const { project } = Astro.props;
+
+if (project === undefined) {
+  return new Response("Project not found", { status: 404 });
+}
+
+const { Content } = await render(project);
+---
+
+<InfoLayout>
+  <div class="p-4 sm:pt-8 sm:px-12 pb-20 min-h-dvh max-w-4xl">
+    <a
+      href="/projects"
+      class="text-zinc-400 hover:text-zinc-300 text-sm mb-6 inline-block"
+    >
+      ← Back to projects
+    </a>
+
+    <H1>{project.data.title}</H1>
+
+    <Image
+      src={project.data.image}
+      alt={project.data.title}
+      class="aspect-video object-cover rounded-lg shadow-lg my-8"
+    />
+
+    <div class="prose prose-zinc prose-invert max-w-none">
+      <div class="text-lg text-zinc-300 mb-8">
+        {project.data.description}
+      </div>
+
+      <Content />
+    </div>
+  </div>
+</InfoLayout>
