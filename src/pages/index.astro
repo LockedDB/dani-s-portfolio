@@ -30,7 +30,7 @@ import RootLayout from "../layouts/RootLayout.astro";
     <header class="sm:hidden flex justify-between items-center">
       <AvailableForWork />
       <Navigation client:load>
-        <Link href="/works" variant="secondary">Works</Link>
+        <Link href="/projects" variant="secondary">Projects</Link>
         <Link href="/about" variant="secondary">About</Link>
         <Link href="/contact" variant="secondary">Contact me</Link>
       </Navigation>
@@ -72,7 +72,7 @@ import RootLayout from "../layouts/RootLayout.astro";
     <!-- Desktop: Top-right navigation -->
     <nav class="hidden sm:flex absolute top-8 right-8 gap-8 items-center">
       <Navigation client:load>
-        <Link href="/works" variant="secondary">Works</Link>
+        <Link href="/projects" variant="secondary">Projects</Link>
         <Link href="/about" variant="secondary">About</Link>
       </Navigation>
       <AvailableForWork />
