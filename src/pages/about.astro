@@ -4,33 +4,45 @@ import InfoLayout from "../layouts/InfoLayout.astro";
 ---
 
 <InfoLayout>
-     <div class="p-4 sm:pt-8 sm:px-12 pb-20 min-h-dvh flex flex-col justify-between gap-32">
-          <div class="space-y-4 sm:space-y-12">
-               <H1> Get to know Nikola </H1>
+  <div
+    class="p-4 sm:pt-8 sm:px-12 pb-20 min-h-dvh flex flex-col justify-between gap-32"
+  >
+    <div class="space-y-4 sm:space-y-12">
+      <H1> About Me </H1>
 
-               <p class="text-xl xl:text-2xl text-zinc-500 text-balance">
-                    <a href="https://en.wikipedia.org/wiki/Nikola_Tesla" target="_blank" class="underline underline-offset-4 decoration-zinc-400 hover:text-zinc-50 hover:decoration-zinc-200">
-                         Nikola Tesla
-                    </a>
-                    (1856-1943) was a Serbian-American inventor, engineer, and futurist
-                    best known for his pioneering work in electricity and electromagnetism.
-                    His innovations laid the foundation for modern alternating current
-                    (AC) power systems and many technologies still in use today.
-               </p>
-          </div>
+      <p class="text-xl xl:text-2xl text-zinc-500 text-balance">
+        Hi, I'm Daniel Benet — a software engineer, Shopify developer, and
+        mobile specialist based in Barcelona, Spain. I'm passionate about
+        building innovative digital products and constantly exploring new
+        technologies. Whether it's crafting seamless mobile experiences or
+        optimizing eCommerce platforms, I enjoy turning ideas into functional,
+        scalable solutions.
+      </p>
 
-          <div class="space-y-2 text-base sm:text-lg">
-               <h2 class="px-4 text-zinc-400 underline underline-offset-4 decoration-zinc-500">Achievements</h2>
-
-               <ul class="px-4 text-zinc-400 list-disc list-outside">
-                    <li>Alternating Current (AC) System</li>
-                    <li>Tesla Coil</li>
-                    <li>Induction Motor</li>
-                    <li>Wireless Transmission</li>
-                    <li>Radio and Remote Control</li>
-                    <li>Hydroelectric Power at Niagara Falls</li>
-                    <li>X-Ray Imaging</li>
-               </ul>
-          </div>
-     </div>
+      <a
+        href="https://notion.so/your-cv-page"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 text-xl text-zinc-400 hover:text-zinc-300 transition-colors"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
+          ></path>
+          <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
+          ></path>
+        </svg>
+        Visit my CV
+      </a>
+    </div>
+  </div>
 </InfoLayout>
