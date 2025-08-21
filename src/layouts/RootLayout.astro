@@ -1,7 +1,5 @@
 ---
-import LoadingIndicator from "astro-loading-indicator/component";
 import { Font } from "astro:assets";
-import { ClientRouter } from "astro:transitions";
 import "../styles/global.css";
 
 const { title, description } = Astro.props;
@@ -42,8 +40,6 @@ const defaultDescription =
     <meta name="twitter:image" content="/social-image.jpg" />
 
     <Font cssVariable="--font-geist" preload />
-    <ClientRouter />
-    <LoadingIndicator color="#f4f4f5" height="2px" />
   </head>
   <body class="font-sans min-h-screen bg-zinc-900">
     <slot />
