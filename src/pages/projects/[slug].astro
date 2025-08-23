@@ -1,9 +1,25 @@
 ---
-import RootLayout from "../layouts/RootLayout.astro";
-import { getCollection } from "astro:content";
+import RootLayout from "../../layouts/RootLayout.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
 
-const projects = await getCollection("projects");
-const sortedProjects = projects.sort((a, b) => a.data.order - b.data.order);
+export async function getStaticPaths() {
+    const projects = await getCollection("projects");
+    return projects.map((project) => ({
+        params: { slug: project.slug },
+        props: { project },
+    }));
+}
+
+type Props = {
+    project: CollectionEntry<"projects">;
+};
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+
+// Get all projects for navigation
+const allProjects = await getCollection("projects");
+const sortedProjects = allProjects.sort((a, b) => a.data.order - b.data.order);
 ---
 
 <RootLayout>
@@ -22,7 +38,10 @@ const sortedProjects = projects.sort((a, b) => a.data.order - b.data.order);
         >
             <!-- Close button for mobile -->
             <div class="md:hidden flex justify-end p-4">
-                <button id="close-menu" class="text-text-secondary hover:text-text-nav-hover">
+                <button
+                    id="close-menu"
+                    class="text-text-secondary hover:text-text-nav-hover"
+                >
                     <svg
                         class="w-6 h-6"
                         fill="none"
@@ -39,8 +58,12 @@ const sortedProjects = projects.sort((a, b) => a.data.order - b.data.order);
             </div>
             <!-- Logo/Header -->
             <div class="p-6 border-b border">
-                <h1 class="text-text-accent text-xl font-semibold">Daniel Benet</h1>
-                <p class="text-text-secondary text-sm mt-1">Frontend Developer</p>
+                <h1 class="text-text-accent text-xl font-semibold">
+                    Daniel Benet
+                </h1>
+                <p class="text-text-secondary text-sm mt-1">
+                    Frontend Developer
+                </p>
             </div>
 
             <!-- Navigation -->
@@ -55,11 +78,15 @@ const sortedProjects = projects.sort((a, b) => a.data.order - b.data.order);
                         </a>
                     </li>
                     {
-                        sortedProjects.map((project, index) => (
+                        sortedProjects.map((proj, index) => (
                             <li>
                                 <a
-                                    href={`/projects/${project.slug}`}
-                                    class="flex items-center px-3 py-2 text-text-nav-secondary hover:text-text-nav-hover hover:bg-bg-hover rounded-md transition-colors"
+                                    href={`/projects/${proj.slug}`}
+                                    class={`flex items-center px-3 py-2 rounded-md transition-colors ${
+                                        proj.slug === project.slug
+                                            ? "text-text-nav-active bg-bg-selected"
+                                            : "text-text-nav-secondary hover:text-text-nav-hover hover:bg-bg-hover"
+                                    }`}
                                 >
                                     <span
                                         class={
@@ -70,7 +97,7 @@ const sortedProjects = projects.sort((a, b) => a.data.order - b.data.order);
                                     >
                                         {String(index + 1).padStart(2, "0")}
                                     </span>
-                                    {project.data.title}
+                                    {proj.data.title}
                                 </a>
                             </li>
                         ))
@@ -94,7 +121,9 @@ const sortedProjects = projects.sort((a, b) => a.data.order - b.data.order);
                     <h1 class="text-xl font-semibold text-text-accent">
                         Daniel Benet
                     </h1>
-                    <p class="text-text-secondary text-sm">Frontend Developer</p>
+                    <p class="text-text-secondary text-sm">
+                        Frontend Developer
+                    </p>
                 </div>
                 <button
                     id="open-menu"
@@ -117,22 +146,55 @@ const sortedProjects = projects.sort((a, b) => a.data.order - b.data.order);
 
             <div class="p-4 md:p-8">
                 <div class="max-w-4xl">
+                    <!-- Project Header -->
                     <div class="mb-8">
-                        <h1 class="text-2xl md:text-4xl font-bold text-text-heading-primary">
-                            Daniel Benet
+                        <h1
+                            class="text-2xl md:text-4xl font-bold text-text-heading-primary mb-2"
+                        >
+                            {project.data.title}
                         </h1>
+                        <p class="text-text-body text-lg mb-4">
+                            {project.data.description}
+                        </p>
+                        <div
+                            class="flex flex-wrap gap-4 text-sm text-text-caption"
+                        >
+                            <span
+                                ><strong>Role:</strong>
+                                {project.data.role}</span
+                            >
+                            <span
+                                ><strong>Period:</strong>
+                                {project.data.period}</span
+                            >
+                            <span
+                                ><strong>Company:</strong>
+                                {project.data.company}</span
+                            >
+                        </div>
                     </div>
 
-                    <div class="prose prose-lg">
-                        <p class="text-text-body text-lg leading-relaxed">
-                            Hey, I'm a frontend developer. I help build fast,
-                            clean frontends — mainly in Shopify and React
-                            Native.
-                        </p>
+                    <!-- Technologies -->
+                    <div class="mb-8">
+                        <h3
+                            class="text-lg font-semibold text-text-heading-secondary mb-3"
+                        >
+                            Technologies
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            {
+                                project.data.technologies.map((tech) => (
+                                    <span class="px-3 py-1 bg-bg-hover text-text-secondary rounded-full text-sm">
+                                        {tech}
+                                    </span>
+                                ))
+                            }
+                        </div>
+                    </div>
 
-                        <p class="text-text-body mt-6">
-                            Portfolio coming soon...
-                        </p>
+                    <!-- Project Content -->
+                    <div class="prose prose-lg max-w-none">
+                        <Content />
                     </div>
                 </div>
             </div>

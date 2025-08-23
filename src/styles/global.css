@@ -2,5 +2,85 @@
 @plugin '@tailwindcss/typography';
 
 @theme inline {
-	--font-sans: var(--font-geist);
+	--font-sans: 'Inter', system-ui, sans-serif;
+	
+	/* Base color tokens */
+	--color-accent: #1C7C54;
+	--color-accent-50: #E6F7F0;
+	--color-accent-100: #CCF0E1;
+	--color-accent-200: #99E0C3;
+	--color-accent-300: #66D1A5;
+	--color-accent-400: #33C187;
+	--color-accent-500: #1C7C54;
+	--color-accent-600: #166343;
+	--color-accent-700: #114A32;
+	--color-accent-800: #0B3121;
+	--color-accent-900: #051911;
+	
+	--color-gray-50: #F9F9F9;
+	--color-gray-100: #F0F0F0;
+	--color-gray-200: #E1E1E1;
+	--color-gray-300: #D2D2D2;
+	--color-gray-400: #B4B4B4;
+	--color-gray-500: #959595;
+	--color-gray-600: #767676;
+	--color-gray-700: #575757;
+	--color-gray-800: #383838;
+	--color-gray-900: #272727;
+	--color-gray-950: #1A1A1A;
+	
+	--color-white: #F7F7F2;
+	--color-white-50: #FCFCFA;
+	--color-white-100: #F9F9F5;
+	--color-white-200: #F7F7F2;
+	--color-white-300: #F2F2EA;
+	--color-white-400: #EDEDDD;
+	--color-white-500: #E8E8D0;
+	--color-white-600: #D9D9BA;
+	--color-white-700: #CACAA4;
+	--color-white-800: #A8A882;
+	--color-white-900: #86865F;
+	
+	/* Text color tokens */
+	--color-text-primary: #272727;
+	--color-text-secondary: #767676;
+	--color-text-tertiary: #B4B4B4;
+	--color-text-disabled: #D2D2D2;
+	--color-text-accent: #1C7C54;
+	--color-text-accent-hover: #166343;
+	--color-text-link: #1C7C54;
+	--color-text-link-hover: #166343;
+	--color-text-link-visited: #114A32;
+	--color-text-success: #1C7C54;
+	--color-text-error: #DC2626;
+	--color-text-warning: #F59E0B;
+	--color-text-info: #3B82F6;
+	--color-text-nav-primary: #575757;
+	--color-text-nav-secondary: #767676;
+	--color-text-nav-active: #272727;
+	--color-text-nav-hover: #272727;
+	--color-text-heading-primary: #272727;
+	--color-text-heading-secondary: #383838;
+	--color-text-body: #767676;
+	--color-text-caption: #B4B4B4;
+	--color-text-placeholder: #D2D2D2;
+	
+	/* Background color tokens */
+	--color-bg-primary: #F7F7F2;
+	--color-bg-secondary: #F9F9F5;
+	--color-bg-tertiary: #FCFCFA;
+	--color-bg-hover: #F2F2EA;
+	--color-bg-pressed: #EDEDDD;
+	--color-bg-selected: #E6F7F0;
+	
+	/* Border color tokens */
+	--color-border: #E1E1E1;
+	--color-border-hover: #D2D2D2;
+	--color-border-focus: #1C7C54;
+}
+
+/* Base styles */
+body {
+	background-color: var(--color-bg-primary);
+	color: var(--color-text-primary);
 }
